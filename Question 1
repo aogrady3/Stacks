@@ -1,0 +1,91 @@
+/************************************************************************
+*
+* Author: Andrew O'Grady
+* Question 1 Homework 4
+*
+************************************************************************/
+
+
+#include<iostream>
+#include<stack>
+
+using namespace std;
+
+//create class queue
+class queue {
+private :
+    stack<int> s1, s2;
+
+//public members
+public :
+    void enqueue(int element);
+    int dequeue();
+    int peakFront();
+    bool isEmpty();
+    void displayQueue();
+};
+
+//queue function
+void queue :: enqueue(int element) {
+    s1.push(element);
+}
+
+//dequeue function
+int queue :: dequeue() {
+    while (!s1.empty()) {
+        s2.push(s1.top());
+        s1.pop();
+}
+    int ret = s2.top();
+    s2.pop();
+
+    while (!s2.empty()) {
+        s1.push(s2.top());
+        s2.pop();
+}
+return ret;
+}
+
+//peakFront function
+int queue :: peakFront(){
+
+    while (!s1.empty()) {
+    s2.push(s1.top());
+    s1.pop();
+}
+
+    int ret = s2.top();
+
+    while (!s2.empty()) {
+    s1.push(s2.top());
+    s2.pop();
+}
+    return ret;
+
+}
+
+//check if empty
+bool queue :: isEmpty(){
+    if(s1.empty() && s2.empty()){
+
+return true;
+}
+else return false;
+
+}
+
+//Display the Queue
+void queue :: displayQueue() {
+    cout<<"Queue is:\n";
+
+while (!s1.empty()) {
+
+    s2.push(s1.top());
+    s1.pop();
+}
+
+while (!s2.empty()) {
+    cout<<s2.top()<<" ";
+    s1.push(s2.top());
+    s2.pop();
+}
